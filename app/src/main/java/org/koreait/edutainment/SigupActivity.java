@@ -49,7 +49,5 @@ public class SigupActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-
-
     }
 }
