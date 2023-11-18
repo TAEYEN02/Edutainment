@@ -19,6 +19,11 @@ public class PlayActivity extends AppCompatActivity {
          Intent intent = new Intent(this, StartExActivity.class);
          startActivity(intent);
       });
+      sign = findViewById(R.id.STTbutton);
+      sign.setOnClickListener(v -> {
+         Intent intent = new Intent(this, StartExActivity.class);
+         startActivity(intent);
+      });
 
    }
 }

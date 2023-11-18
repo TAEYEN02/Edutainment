@@ -8,3 +8,10 @@ plugins {
     id 'com.android.library' version '7.4.1' apply false
     id 'com.google.gms.google-services' version '4.4.0' apply false
 }
+//카카오음성 추가
+/**subprojects {
+    repositories {
+        mavenCentral()
+        maven { url 'http://devrepo.kakao.com:8088/nexus/content/groups/public/' }
+    }
+}*/
