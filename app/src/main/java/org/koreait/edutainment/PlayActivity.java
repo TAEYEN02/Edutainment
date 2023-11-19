@@ -1,10 +1,10 @@
 package org.koreait.edutainment;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class PlayActivity extends AppCompatActivity {
@@ -21,7 +21,7 @@ public class PlayActivity extends AppCompatActivity {
       });
       sign = findViewById(R.id.STTbutton);
       sign.setOnClickListener(v -> {
-         Intent intent = new Intent(this, StartExActivity.class);
+         Intent intent = new Intent(this,STTActivity.class);
          startActivity(intent);
       });
 
