@@ -1,7 +1,5 @@
 package org.koreait.edutainment;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -9,15 +7,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
+
 public class SigupActivity extends AppCompatActivity {
     TextView back;
     EditText name,id,pw,pw2,birthyear,birthdate,birthday;
     Button pwcheck, submit;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sigup);
+        mAuth = FirebaseAuth.getInstance();
 
         //뒤로 가기 버튼
         back = findViewById(R.id.back);

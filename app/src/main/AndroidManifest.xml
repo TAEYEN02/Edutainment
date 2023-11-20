@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Edutainment">
         <activity
+            android:name=".TTS_STTActivity"
+            android:exported="false" />
+        <activity
             android:name=".STTActivity"
             android:exported="false" />
         <activity
