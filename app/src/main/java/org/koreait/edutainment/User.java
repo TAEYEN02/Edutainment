@@ -1,6 +1,6 @@
 package org.koreait.edutainment;
 
-public class user {
+public class User {
 
     String emailId;
     String idToken;
@@ -8,11 +8,9 @@ public class user {
 
     String password2;
     String name;
-    String birthyear;
-    String birthday;
-    String birthdate;
+    int age;
 
-    public user(){}
+    public User(){}
 
     public String getIdToken() {
         return idToken;
@@ -56,43 +54,20 @@ public class user {
         this.name = name;
     }
 
-    public String getBirthyear() {
-        return birthyear;
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    public void setBirthyear(String birthyear) {
-        this.birthyear = birthyear;
+    public int getAge() {
+        return this.age;
     }
 
-    public String getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
-
-    public String getBirthdate() {
-        return birthdate;
-    }
-
-    public void setBirthdate(String birthdate) {
-
-        this.birthdate = birthdate;
-    }
-
-    public user(String emailId, String password, String password2,
-                String name, String birthyear,
-                String birthday, String birthdate ){
+    public User(String emailId, String password, String password2,
+                String name, int age){
         this.emailId = emailId;
         this.password = password;
         this.password2 = password2;
         this.name = name;
-        this.birthday = birthday;
-        this.birthdate = birthdate;
-        this. birthyear= birthyear;
-
-
-
+        this.age= age;
     }
 }

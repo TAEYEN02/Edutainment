@@ -9,10 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
     TextView sign;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
     protected void onPostCreate(Bundle saveInstanceState) {
         super.onPostCreate(saveInstanceState);
         setContentView(R.layout.activity_main);
@@ -23,6 +19,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        sign = findViewById(R.id.CardButton);
+        sign.setOnClickListener(v ->{
+            Intent intent = new Intent(this, ListActivity.class);
+            startActivity(intent);
+        });
         sign = findViewById(R.id.PlayButton);
         sign.setOnClickListener(v ->{
             Intent intent = new Intent(this, PlayActivity.class);

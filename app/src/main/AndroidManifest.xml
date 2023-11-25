@@ -13,26 +13,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Edutainment">
         <activity
-            android:name=".TTS_STTActivity"
+            android:name=".ReadActivity"
             android:exported="false" />
         <activity
-            android:name=".STTActivity"
+            android:name=".FamilyActivity"
             android:exported="false" />
         <activity
-            android:name=".StartActivity"
+            android:name=".RideActivity"
             android:exported="false" />
         <activity
-            android:name=".StartExActivity"
+            android:name=".ListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.login.ListActivity"
+            android:exported="false"
+            android:label="@string/title_activity_list" />
+        <activity
+            android:name=".PlayActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AnimalActivity"
             android:exported="false" />
         <activity
             android:name=".ProgressActivity"
             android:exported="false" />
-        <activity
-            android:name=".PlayActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:exported="false"
-            android:label="@string/title_activity_zoom"
-            android:theme="@style/Theme.Edutainment.Fullscreen" />
         <activity
             android:name=".IntroActivity"
             android:exported="true">
