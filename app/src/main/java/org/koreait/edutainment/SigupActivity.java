@@ -1,5 +1,6 @@
 package org.koreait.edutainment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,11 +53,15 @@ public class SigupActivity extends AppCompatActivity {
             String name = mEtname.getText().toString();
             int age = Integer.parseInt(msignAge.getText().toString());
 
-            mDatabaseRef  = FirebaseDatabase.getInstance().getReference(email);
-            User newUser = new User(email, password, password2, name,age);
+            mDatabaseRef = FirebaseDatabase.getInstance().getReference(email);
+            User newUser = new User(email, password, password2, name, age);
             mDatabaseRef.child(email).setValue(newUser);
             Toast.makeText(SigupActivity.this, "회원가입에 성공했습니다", Toast.LENGTH_LONG).show();
 
+            //회원가입 완료 후 로그인 화면으로 이동
+            Intent intent = new Intent(SigupActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();//현재 액티비티 나가기
 
         });
     }

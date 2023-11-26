@@ -20,13 +20,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
         sign = findViewById(R.id.CardButton);
-        sign.setOnClickListener(v ->{
+        sign.setOnClickListener(v -> {
             Intent intent = new Intent(this, ListActivity.class);
             startActivity(intent);
         });
         sign = findViewById(R.id.PlayButton);
-        sign.setOnClickListener(v ->{
+        sign.setOnClickListener(v -> {
             Intent intent = new Intent(this, PlayActivity.class);
+            startActivity(intent);
+        });
+        sign = findViewById(R.id.ReadButton);
+        sign.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ReadActivity.class);
             startActivity(intent);
         });
     }
