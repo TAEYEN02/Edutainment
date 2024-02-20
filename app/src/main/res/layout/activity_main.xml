@@ -1,80 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    tools:context=".MainActivity">
-
+    android:alignmentMode="alignBounds"
+    android:columnCount="2"
+    android:columnOrderPreserved="false"
+    android:padding="16dp"
+    android:rowCount="2">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/ProgressButton"
-        android:layout_width="130dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="524dp"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
         android:background="@color/purple_200"
+        android:fontFamily="sans-serif"
         android:text="진행상황"
         android:textColor="@color/material_dynamic_neutral_variant100"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textStyle="bold" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/CardButton"
-        android:layout_width="130dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="312dp"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
         android:background="@color/purple_200"
         android:text="낱말카드"
         android:textColor="@color/material_dynamic_neutral_variant100"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ProgressButton"
-        app:layout_constraintVertical_bias="0.451" />
+        android:textStyle="bold" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/ReadButton"
-        android:layout_width="130dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="140dp"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
         android:background="@color/purple_200"
         android:text="낱말읽기"
         android:textColor="@color/material_dynamic_neutral_variant100"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CardButton"
-        app:layout_constraintVertical_bias="0.378" />
+        android:textStyle="bold" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/PlayButton"
-        android:layout_width="130dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="140dp"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
         android:background="@color/purple_200"
         android:text="낱말카드게임"
         android:textColor="@color/material_dynamic_neutral_variant100"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ReadButton"
-        app:layout_constraintVertical_bias="1.0" />
+        android:textStyle="bold" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</GridLayout>

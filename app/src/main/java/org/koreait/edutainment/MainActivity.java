@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         });
         sign = findViewById(R.id.PlayButton);
         sign.setOnClickListener(v -> {
-            Intent intent = new Intent(this, PlayActivity.class);
+            Intent intent = new Intent(this, GameListActivity.class);
             startActivity(intent);
         });
         sign = findViewById(R.id.ReadButton);

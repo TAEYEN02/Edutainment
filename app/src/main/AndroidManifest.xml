@@ -13,6 +13,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Edutainment">
         <activity
+            android:name=".RidePlayActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FoodPlayActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FamilyPlayActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GameListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProgressMenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".ReadActivity"
             android:exported="false" />
         <activity
@@ -29,7 +44,7 @@
             android:exported="false"
             android:label="@string/title_activity_list" />
         <activity
-            android:name=".PlayActivity"
+            android:name=".AniPlayActivity"
             android:exported="false" />
         <activity
             android:name=".AnimalActivity"
