@@ -1,75 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:padding="16dp">
+    android:columnCount="2"
+    android:padding="0dp"
+    android:rowCount="2">
 
-    <TextView
-        android:id="@+id/animalCardLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="동물카드"
-        android:textColor="#000000"
-        android:textSize="18sp" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        android:layout_rowWeight="0.75"
+        android:layout_columnWeight="1"
+        android:layout_margin="4dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp">
 
-    <ProgressBar
-        android:id="@+id/animalCardProgressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/animalCardLabel"
-        android:indeterminate="false" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
 
-    <TextView
-        android:id="@+id/familyCardLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/animalCardProgressBar"
-        android:text="가족카드"
-        android:textColor="#000000"
-        android:textSize="18sp" />
+            <TextView
+                android:id="@+id/animalCardLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/font"
+                android:text="동물카드"
+                android:textColor="#000000"
+                android:textSize="18sp" />
 
-    <ProgressBar
-        android:id="@+id/familyCardProgressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/familyCardLabel"
-        android:indeterminate="false" />
+            <ProgressBar
+                android:id="@+id/animalCardProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/animalCardLabel"
+                android:layout_centerHorizontal="true"
+                android:indeterminate="false"
+                android:progressDrawable="@drawable/circular_green" />
 
-    <TextView
-        android:id="@+id/foodCardLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/familyCardProgressBar"
-        android:text="음식카드"
-        android:textColor="#000000"
-        android:textSize="18sp" />
+        </RelativeLayout>
 
-    <ProgressBar
-        android:id="@+id/foodCardProgressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/foodCardLabel"
-        android:indeterminate="false" />
+    </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/rideCardLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/foodCardProgressBar"
-        android:text="이동수단카드"
-        android:textColor="#000000"
-        android:textSize="18sp" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:layout_margin="4dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp">
 
-    <ProgressBar
-        android:id="@+id/rideCardProgressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/rideCardLabel"
-        android:indeterminate="false" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/familyCardLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/font"
+                android:text="가족카드"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <ProgressBar
+                android:id="@+id/familyCardProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/familyCardLabel"
+                android:layout_centerHorizontal="true"
+                android:indeterminate="false"
+                android:progressDrawable="@drawable/circular_yellow" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:layout_margin="4dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/foodCardLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/font"
+                android:text="음식카드"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <ProgressBar
+                android:id="@+id/foodCardProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/foodCardLabel"
+                android:layout_centerHorizontal="true"
+                android:indeterminate="false"
+                android:progressDrawable="@drawable/circular_blue" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:layout_margin="4dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/rideCardLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/font"
+                android:text="이동수단카드"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <ProgressBar
+                android:id="@+id/rideCardProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rideCardLabel"
+                android:layout_centerHorizontal="true"
+                android:indeterminate="false"
+                android:progressDrawable="@drawable/circular_red" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</GridLayout>

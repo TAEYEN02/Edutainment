@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AnimalActivity">
+    tools:context=".ReadActivity">
 
     <ImageView
-        android:id="@+id/animalImageView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:id="@+id/ImageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="200dp"
         android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/wordTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/animalImageView"
+        android:layout_below="@id/ImageView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:textSize="36sp" />
@@ -26,27 +27,37 @@
         android:id="@+id/meaningTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/wordTextView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:textSize="24sp" />
+        android:layout_centerInParent="true"
+        android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/progressTextView"
+    <Button
+        android:id="@+id/speakbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/meaningTextView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:textSize="18sp" />
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="104dp"
+        android:text="말하기"
+        app:icon="@android:drawable/ic_btn_speak_now" />
 
     <Button
         android:id="@+id/nextbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/progressTextView"
+        android:layout_below="@id/meaningTextView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="104dp"
+        android:layout_marginEnd="38dp"
+        android:text="다음 카드 보기" />
+
+    <TextView
+        android:id="@+id/resultTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/speakbutton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:text="다음 카드 보기" />
+        android:textSize="18sp" />
 
 </RelativeLayout>

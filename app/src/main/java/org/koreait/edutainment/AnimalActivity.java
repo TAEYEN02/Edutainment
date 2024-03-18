@@ -1,6 +1,7 @@
 package org.koreait.edutainment;
 
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.widget.Button;
@@ -9,59 +10,52 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+
 import java.util.HashMap;
 import java.util.Locale;
 
 public class AnimalActivity extends AppCompatActivity {
 
     private HashMap<String, String> words = new HashMap<>();
-    private HashMap<String, Integer> images = new HashMap<>();
+    private HashMap<String, String> images = new HashMap<>();
     private String[] keys;
     private TextToSpeech tts;
 
     private int currentIndex = 0;
+
+    // Firebase Realtime Database에 연결
+    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    // Firebase Storage에 연결
+    private FirebaseStorage storage = FirebaseStorage.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animal);
 
-        // 단어 DB를 여기에 붙이면 될 것 같은데..
-        words.put("elephant", "코끼리");
-        images.put("elephant", R.drawable.elephant);
-        words.put("lion", "사자");
-        images.put("lion", R.drawable.lion);
-        words.put("monkey", "원숭이");
-        images.put("monkey", R.drawable.monkey);
-        words.put("dog", "강아지");
-        images.put("dog", R.drawable.dog);
-        words.put("cat", "고양이");
-        images.put("cat", R.drawable.cat);
-        words.put("tiger", "호랑이");
-        images.put("tiger", R.drawable.tiger);
-        words.put("kangaroo", "캥거루");
-        images.put("kangaroo", R.drawable.kangaroo);
-        words.put("penguin", "펭귄");
-        images.put("penguin", R.drawable.penguin);
-        words.put("dolphin", "돌고래");
-        images.put("dolphin", R.drawable.dolphin);
-        words.put("whale", "고래");
-        images.put("whale", R.drawable.whale);
-        words.put("panda", "판다");
-        images.put("panda", R.drawable.panda);
-        words.put("koala", "코알라");
-        images.put("koala", R.drawable.koala);
-        words.put("squirrel", "다람쥐");
-        images.put("squirrel", R.drawable.squirrel);
-        words.put("gorilla", "고릴라");
-        images.put("gorilla", R.drawable.gorilla);
-        words.put("zebra", "얼룩말");
-        images.put("zebra", R.drawable.zebra);
-        words.put("horse", "말");
-        images.put("horse", R.drawable.horse);
+        // 단어와 이미지 이름을 Firebase Realtime Database에서 불러옴
+        mDatabase.child("words").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // dataSnapshot 객체에는 Firebase Realtime Database의 데이터가 포함되어 있습니다.
+                words = (HashMap<String, String>) dataSnapshot.getValue();
+                keys = words.keySet().toArray(new String[0]);
+                showCard();  // 단어를 불러온 후 카드를 보여줍니다.
+            }
 
-
-        keys = words.keySet().toArray(new String[0]);
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // 데이터를 읽는 데 실패했을 때 호출됩니다.
+            }
+        });
 
         tts = new TextToSpeech(this, status -> {
             if (status != TextToSpeech.ERROR) {
@@ -84,7 +78,7 @@ public class AnimalActivity extends AppCompatActivity {
 
         String word = keys[currentIndex];
         String meaning = words.get(word);
-        Integer imageResource = images.get(word);  // 이미지 리소스 가져오기
+        String imageName = words.get(word + "_image");
 
         TextView wordTextView = findViewById(R.id.wordTextView);
         TextView meaningTextView = findViewById(R.id.meaningTextView);
@@ -95,9 +89,18 @@ public class AnimalActivity extends AppCompatActivity {
         meaningTextView.setText(meaning);
         progressTextView.setText((currentIndex + 1) + " / " + keys.length);
 
-        if (imageResource != null) {  // null 체크
-            animalImageView.setImageResource(imageResource);
-        }
+        // Firebase Storage에서 이미지 불러오기
+        storage.getReference().child("animal/" + imageName).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                // 파일 URL 가져오기 성공
+                String url = uri.toString();
+                // Glide 라이브러리를 사용하여 이미지 뷰에 이미지 로드
+                Glide.with(AnimalActivity.this).load(url).into(animalImageView);
+            }
+        }).addOnFailureListener(exception -> {
+            // 파일 URL 가져오기 실패
+        });
 
         tts.speak(meaning, TextToSpeech.QUEUE_FLUSH, null, "WordSpeak");
 

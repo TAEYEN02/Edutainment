@@ -3,10 +3,10 @@ package org.koreait.edutainment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -18,9 +18,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity2 extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "MainActivity2";
     private DatabaseReference mDatabase;
     private TextView greetingTextView;
     private FirebaseAuth mAuth;
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main2);
 
         greetingTextView = findViewById(R.id.greeting);
 
@@ -42,34 +42,38 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             String name = dataSnapshot.getValue(String.class);
-                            if (name != null) {
-                                String greeting = getGreeting();
-                                greetingTextView.setText(name + " 님, " + greeting);
-                            } else {
-                                greetingTextView.setText("환영합니다!");
-                            }
+                            String greeting = getGreeting();
+                            greetingTextView.setText(name + " 님, " + greeting);
                         }
 
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
                             Log.w(TAG, "Failed to read value.", databaseError.toException());
-                            greetingTextView.setText("데이터를 불러오는 데 실패했습니다.");
                         }
                     });
-        } else {
-            greetingTextView.setText("환영합니다!");
         }
 
-        setOnClickListenerForButton(R.id.studyStatusButton, ProgressActivity.class);
-        setOnClickListenerForButton(R.id.wordCardButton, ListActivity.class);
-        setOnClickListenerForButton(R.id.readingPracticeButton, ReadActivity.class);
-        setOnClickListenerForButton(R.id.gameButton, GameListActivity.class);
-    }
+        CardView studyStatusButton = findViewById(R.id.studyStatusButton);
+        studyStatusButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ProgressActivity.class);
+            startActivity(intent);
+        });
 
-    private void setOnClickListenerForButton(int buttonId, Class<?> activityClass) {
-        Button button = findViewById(buttonId);
-        button.setOnClickListener(v -> {
-            Intent intent = new Intent(this, activityClass);
+        CardView wordCardButton = findViewById(R.id.wordCardButton);
+        wordCardButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ListActivity.class);
+            startActivity(intent);
+        });
+
+        CardView readingPracticeButton = findViewById(R.id.readingPracticeButton);
+        readingPracticeButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ReadActivity.class);
+            startActivity(intent);
+        });
+
+        CardView gameButton = findViewById(R.id.gameButton);
+        gameButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, GameListActivity.class);
             startActivity(intent);
         });
     }

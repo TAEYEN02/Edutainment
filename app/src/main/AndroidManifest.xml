@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.koreait.edutainment">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,45 +14,44 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Edutainment">
         <activity
+            android:name=".MainActivity2"
+            android:exported="true" />
+        <activity
             android:name=".RidePlayActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".FoodPlayActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".FamilyPlayActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".GameListActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ProgressMenuActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ReadActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".FamilyActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".RideActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ListActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.login.ListActivity"
-            android:exported="false"
-            android:label="@string/title_activity_list" />
+            android:exported="true" />
         <activity
             android:name=".AniPlayActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".AnimalActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ProgressActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".IntroActivity"
             android:exported="true">
@@ -76,7 +76,7 @@
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.Edutainment.Fullscreen" />
     </application>

@@ -18,7 +18,6 @@ import com.google.firebase.database.ValueEventListener;
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth; // FirebaseAuth 객체 생성
-
     private DatabaseReference mDatabaseRef; //실시간 데이터 베이스
     private EditText mEtId, mEtPw;
 
