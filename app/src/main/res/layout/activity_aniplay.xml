@@ -10,6 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:fontFamily="@font/font"
         android:text="시작" />
 
     <TextView
@@ -19,6 +20,7 @@
         android:layout_below="@id/startbutton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
+        android:fontFamily="@font/font"
         android:textSize="24sp" />
 
     <TextView
@@ -28,9 +30,11 @@
         android:layout_below="@id/statusTextView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
+        android:fontFamily="@font/font"
         android:textSize="24sp" />
 
     <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/wordTextView"
@@ -41,14 +45,14 @@
         <ImageView
             android:id="@+id/imageView1"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:layout_weight="1"
             android:padding="10dp" />
 
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="150dp"
             android:layout_weight="1"
             android:padding="10dp" />
     </LinearLayout>
@@ -56,23 +60,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/imageView2"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="30dp"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_marginTop="58dp"
         android:orientation="horizontal"
         tools:ignore="NotSibling">
 
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:layout_weight="1"
             android:padding="10dp" />
 
         <ImageView
             android:id="@+id/imageView4"
-            android:layout_width="10dp"
-            android:layout_height="100dp"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
             android:layout_weight="1"
             android:padding="10dp" />
     </LinearLayout>

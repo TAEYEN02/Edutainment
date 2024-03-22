@@ -22,13 +22,20 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("create table Members (mID integer primary key autoincrement, Name text);");
 
 
+        db.execSQL("INSERT INTO Members (Name) VALUES('부모님')");
         db.execSQL("INSERT INTO Members (Name) VALUES('아빠')");
         db.execSQL("INSERT INTO Members (Name) VALUES('엄마')");
         db.execSQL("INSERT INTO Members (Name) VALUES('할머니')");
         db.execSQL("INSERT INTO Members (Name) VALUES('할아버지')");
-        db.execSQL("INSERT INTO Members (Name) VALUES('오빠')");
-        db.execSQL("INSERT INTO Members (Name) VALUES('언니')");
-        db.execSQL("INSERT INTO Members (Name) VALUES('동생')");
+        db.execSQL("INSERT INTO Members (Name) VALUES('아들')");
+        db.execSQL("INSERT INTO Members (Name) VALUES('딸')");
+        db.execSQL("INSERT INTO Members (Name) VALUES('고모, 이모')");
+        db.execSQL("INSERT INTO Members (Name) VALUES('여동생')");
+        db.execSQL("INSERT INTO Members (Name) VALUES('누나')");
+        db.execSQL("INSERT INTO Members (Name) VALUES('남동생')");
+        db.execSQL("INSERT INTO Members (Name) VALUES('형')");
+        db.execSQL("INSERT INTO Members (Name) VALUES('고모부, 삼촌')");
+        db.execSQL("INSERT INTO Members (Name) VALUES('사촌')");
 
 
     }

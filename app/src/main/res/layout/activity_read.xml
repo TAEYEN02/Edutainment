@@ -8,10 +8,11 @@
 
     <ImageView
         android:id="@+id/ImageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentEnd="true"
         android:layout_marginTop="200dp"
+        android:layout_marginEnd="108dp"
         android:scaleType="centerCrop" />
 
     <TextView

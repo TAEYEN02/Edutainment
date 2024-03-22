@@ -33,6 +33,7 @@ android {
     packagingOptions {
         resources.excludes.add("META-INF/*")
     }
+    namespace 'org.koreait.edutainment'
 
 }
 dependencies {

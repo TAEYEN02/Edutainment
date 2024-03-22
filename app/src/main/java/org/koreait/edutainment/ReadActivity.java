@@ -113,14 +113,13 @@ public class ReadActivity extends AppCompatActivity {
                 if (matches != null) {
                     for (String match : matches) {
                         if (match.equals(meaning)) {
+                            // 발음이 정확하지 않습니다. 다시 시도해주세요.
+                            tts.speak("발음이 정확하지 않습니다. 다시 시도해주세요.", TextToSpeech.QUEUE_FLUSH, null);
+                        } else {
                             // 발음이 정확합니다.
                             tts.speak("발음이 정확합니다.", TextToSpeech.QUEUE_FLUSH, null);
                             // ETRI API를 호출하여 발음 평가
                             evaluatePronunciation(match, meaning);
-                            break;
-                        } else {
-                            // 발음이 정확하지 않습니다. 다시 시도해주세요.
-                            tts.speak("발음이 정확하지 않습니다. 다시 시도해주세요.", TextToSpeech.QUEUE_FLUSH, null);
                         }
                     }
                 }
