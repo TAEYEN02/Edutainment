@@ -1,77 +1,145 @@
 package org.koreait.edutainment;
 
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.HashMap;
+import com.google.firebase.database.annotations.Nullable;
+
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class RideActivity extends AppCompatActivity {
 
-    private HashMap<String, String> words = new HashMap<>();
-    private String[] keys;
     private TextToSpeech tts;
-    private int currentIndex = 0;
+    private static final String PREFS_NAME = "Progress";
+    private static final String PREFS_KEY_PROGRESS = "RideActivityProgress";
+    DBHelper sqLiteHelper;
+    ImageDBHelper imageDBHelper;
+    TextView textView;
+    TextView progressTextView;
+    Button button;
+    ImageView imageView;
+    private int currentRideIndex = 0;
+    private DBHelper dbHelper;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ride);
 
-        // 단어 DB를 여기에 붙이면 될 것 같은데..
-        words.put("bicycle", "자전거");
-        words.put("bus", "버스");
-        words.put("car", "자동차");
-        words.put("motorcycle", "오토바이");
-        words.put("train", "기차");
-        words.put("subway", "지하철");
-        words.put("taxi", "택시");
-        words.put("airplane", "비행기");
-        words.put("helicopter", "헬리콥터");
-        words.put("boat", "보트");
-        words.put("rocket", "로켓");
-        words.put("skateboard", "스케이트보드");
-        words.put("space shuttle", "우주선");
-        words.put("submersible vehicle", "잠수함");
-        words.put("sled", "썰매");
-        //..
-        // 단어추가부분.
+        button = findViewById(R.id.nextbutton);
+        sqLiteHelper = new DBHelper(this);
+        imageDBHelper = new ImageDBHelper(this);
+        textView = findViewById(R.id.meaningTextView);
+        progressTextView = findViewById(R.id.progressTextView);
+        imageView = findViewById(R.id.imageView);
 
-        keys = words.keySet().toArray(new String[0]);
-
+        // TextToSpeech 초기화
         tts = new TextToSpeech(this, status -> {
             if (status != TextToSpeech.ERROR) {
                 tts.setLanguage(Locale.KOREAN);
             }
         });
 
-        Button button = findViewById(R.id.nextbutton);
-        button.setOnClickListener(v -> showCard());
-    }
+        // SharedPreferences에서 진행 상황 불러오기
+        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        currentRideIndex = sharedPreferences.getInt(PREFS_KEY_PROGRESS, 0);
 
-    private void showCard() {
-        if (currentIndex >= keys.length) {  // 추가된 코드
-            tts.speak("끝", TextToSpeech.QUEUE_FLUSH, null, "EndSpeak");
-            return;  // 추가된 코드
+        // res/drawable에 있는 이미지를 로드하고 ImageDBHelper에 저장
+        if (imageDBHelper.getImage("airplane") == null) {
+            Bitmap airplane = BitmapFactory.decodeResource(getResources(), R.drawable.airplane);
+            imageDBHelper.addImage("airplane", airplane);
+        }
+        if (imageDBHelper.getImage("motorcycle") == null) {
+            Bitmap motorcycle = BitmapFactory.decodeResource(getResources(), R.drawable.motorcycle);
+            imageDBHelper.addImage("motorcycle", motorcycle);
+        }
+        if (imageDBHelper.getImage("car") == null) {
+            Bitmap car = BitmapFactory.decodeResource(getResources(), R.drawable.car);
+            imageDBHelper.addImage("car", car);
+        }
+        if (imageDBHelper.getImage("train") == null) {
+            Bitmap train = BitmapFactory.decodeResource(getResources(), R.drawable.train);
+            imageDBHelper.addImage("train", train);
+        }
+        if (imageDBHelper.getImage("boat") == null) {
+            Bitmap boat = BitmapFactory.decodeResource(getResources(), R.drawable.boat);
+            imageDBHelper.addImage("boat", boat);
+        }
+        if (imageDBHelper.getImage("helicopter") == null) {
+            Bitmap helicopter = BitmapFactory.decodeResource(getResources(), R.drawable.helicopter);
+            imageDBHelper.addImage("helicopter", helicopter);
+        }
+        if (imageDBHelper.getImage("bicycle") == null) {
+            Bitmap bicycle = BitmapFactory.decodeResource(getResources(), R.drawable.bicycle);
+            imageDBHelper.addImage("bicycle", bicycle);
+        }
+        if (imageDBHelper.getImage("bus") == null) {
+            Bitmap bus = BitmapFactory.decodeResource(getResources(), R.drawable.bus);
+            imageDBHelper.addImage("bus", bus);
         }
 
-        String word = keys[currentIndex];// 수정된 부분
-        String meaning = words.get(word);
+        dbHelper = new DBHelper(this);
 
-        TextView wordTextView = findViewById(R.id.wordTextView);
-        TextView meaningTextView = findViewById(R.id.meaningTextView);
-        TextView progressTextView = findViewById(R.id.progressTextView);  // 추가된 코드
+        button.setOnClickListener(view -> {
+            ArrayList<String> ridesName = dbHelper.getRideNames();
 
-        wordTextView.setText(word);
-        meaningTextView.setText(meaning);
+            if (currentRideIndex < ridesName.size()) {
+                String nextName = ridesName.get(currentRideIndex);
+                textView.setText(nextName);
+                tts.speak(nextName, TextToSpeech.QUEUE_FLUSH, null);
 
-        tts.speak(meaning, TextToSpeech.QUEUE_FLUSH, null, "WordSpeak");
-        currentIndex = (currentIndex + 1) % keys.length; // 수정된 부분
-        progressTextView.setText((currentIndex + 1) + " / " + keys.length);  // 추가된 코드
+                String englishName = dbHelper.getEnglishName(nextName, "Rides");
+                if (englishName != null) {
+                    Bitmap imageFromDB = imageDBHelper.getImage(englishName);
+                    if (imageFromDB != null) {
+                        imageView.setImageBitmap(imageFromDB);
+                    }
+                }
+
+                currentRideIndex++;
+            } else {
+                currentRideIndex = 0;
+                String firstName = ridesName.get(currentRideIndex);
+                textView.setText(firstName);
+                tts.speak(firstName, TextToSpeech.QUEUE_FLUSH, null);
+
+                String englishName = dbHelper.getEnglishName(firstName, "Rides");
+                if (englishName != null) {
+                    Bitmap imageFromDB = imageDBHelper.getImage(englishName);
+                    if (imageFromDB != null) {
+                        imageView.setImageBitmap(imageFromDB);
+                    }
+                }
+            }
+
+            // 진행 상황 업데이트
+            String progress = (currentRideIndex + 1) + "/" + ridesName.size();
+            progressTextView.setText(progress);
+
+            // SharedPreferences에 진행 상황 저장
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt(PREFS_KEY_PROGRESS, currentRideIndex);
+            editor.apply();
+        });
+
+    }
+
+    @Override
+    protected void onPause() {
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
+        super.onPause();
     }
 
     @Override

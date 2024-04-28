@@ -29,6 +29,7 @@ public class FoodPlayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_familyplay);
 
         // 이미지 DB
+        /**
         images.put("코끼리", R.drawable.elephant);
         images.put("사자", R.drawable.lion);
         images.put("원숭이", R.drawable.monkey);
@@ -45,7 +46,7 @@ public class FoodPlayActivity extends AppCompatActivity {
         images.put("고릴라", R.drawable.gorilla);
         images.put("얼룩말", R.drawable.zebra);
         images.put("말", R.drawable.horse);
-        // 이미지 추가 부분.
+         // 이미지 추가 부분.**/
 
         keys = images.keySet().toArray(new String[0]);
 

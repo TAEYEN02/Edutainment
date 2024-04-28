@@ -3,10 +3,10 @@ package org.koreait.edutainment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -35,47 +35,53 @@ public class MainActivity2 extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
-            String uid = user.getUid();
+            String name = user.getUid();
             mDatabase = FirebaseDatabase.getInstance().getReference();
-            mDatabase.child(uid).child("name")
+            mDatabase.child(name).child("name")
                     .addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             String name = dataSnapshot.getValue(String.class);
-                            String greeting = getGreeting();
-                            greetingTextView.setText(name + " 님, " + greeting);
+                            if (name != null) {
+                                String greeting = getGreeting();
+                                greetingTextView.setText(name + "!! " + greeting);
+                            } else {
+                                greetingTextView.setText("환영합니다!");
+                            }
                         }
 
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
                             Log.w(TAG, "Failed to read value.", databaseError.toException());
+                            greetingTextView.setText("데이터를 불러오는 데 실패했습니다.");
                         }
                     });
+        } else {
+            greetingTextView.setText("환영합니다!");
         }
 
-        CardView studyStatusButton = findViewById(R.id.studyStatusButton);
+        Button studyStatusButton = findViewById(R.id.studyStatusButton);
         studyStatusButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, ProgressActivity.class);
             startActivity(intent);
         });
-
-        CardView wordCardButton = findViewById(R.id.wordCardButton);
+        Button wordCardButton = findViewById(R.id.wordCardButton);
         wordCardButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, ListActivity.class);
             startActivity(intent);
         });
-
-        CardView readingPracticeButton = findViewById(R.id.readingPracticeButton);
+        Button readingPracticeButton = findViewById(R.id.readingPracticeButton);
         readingPracticeButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, ReadActivity.class);
             startActivity(intent);
         });
-
-        CardView gameButton = findViewById(R.id.gameButton);
+        Button gameButton = findViewById(R.id.gameButton);
         gameButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, GameListActivity.class);
             startActivity(intent);
         });
+
+
     }
 
     private String getGreeting() {

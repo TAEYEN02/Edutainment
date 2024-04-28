@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffff"
     tools:context=".IntroActivity">
 
     <LinearLayout
@@ -18,11 +19,12 @@
         tools:ignore="MissingConstraints">
 
         <ImageView
+            android:background="#ffff"
             android:layout_width="wrap_content"
             android:layout_height="136dp"
             android:layout_gravity="center"
-            android:src="@drawable/panda_3334356_1280"
-            tools:srcCompat="@drawable/panda_3334356_1280" />
+            android:src="@drawable/panda"
+            tools:srcCompat="@drawable/panda" />
 
         <TextView
             android:layout_width="wrap_content"

@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private TextView greetingTextView;
     private FirebaseAuth mAuth;
+    Button sign;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,16 +36,16 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
-            String uid = user.getUid();
+            String name = user.getUid();
             mDatabase = FirebaseDatabase.getInstance().getReference();
-            mDatabase.child(uid).child("name")
+            mDatabase.child(name).child("name")
                     .addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             String name = dataSnapshot.getValue(String.class);
                             if (name != null) {
                                 String greeting = getGreeting();
-                                greetingTextView.setText(name + " 님, " + greeting);
+                                greetingTextView.setText(name + "!! " + greeting);
                             } else {
                                 greetingTextView.setText("환영합니다!");
                             }
@@ -60,18 +61,28 @@ public class MainActivity extends AppCompatActivity {
             greetingTextView.setText("환영합니다!");
         }
 
-        setOnClickListenerForButton(R.id.studyStatusButton, ProgressActivity.class);
-        setOnClickListenerForButton(R.id.wordCardButton, ListActivity.class);
-        setOnClickListenerForButton(R.id.readingPracticeButton, ReadActivity.class);
-        setOnClickListenerForButton(R.id.gameButton, GameListActivity.class);
-    }
-
-    private void setOnClickListenerForButton(int buttonId, Class<?> activityClass) {
-        Button button = findViewById(buttonId);
-        button.setOnClickListener(v -> {
-            Intent intent = new Intent(this, activityClass);
+        sign = findViewById(R.id.studyStatusButton);
+        sign.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ProgressActivity.class);
             startActivity(intent);
         });
+        sign = findViewById(R.id.wordCardButton);
+        sign.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ListActivity.class);
+            startActivity(intent);
+        });
+        sign = findViewById(R.id.readingPracticeButton);
+        sign.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ReadActivity.class);
+            startActivity(intent);
+        });
+        sign = findViewById(R.id.gameButton);
+        sign.setOnClickListener(v -> {
+            Intent intent = new Intent(this, GameListActivity.class);
+            startActivity(intent);
+        });
+
+
     }
 
     private String getGreeting() {

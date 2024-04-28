@@ -2,13 +2,12 @@ package org.koreait.edutainment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class GameListActivity extends AppCompatActivity {
-
-    TextView sign;
+    ImageView sign;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +29,19 @@ public class GameListActivity extends AppCompatActivity {
             Intent intent = new Intent(this, RidePlayActivity.class);
             startActivity(intent);
         });
-        sign = findViewById(R.id.familybtn4);
+        sign = findViewById(R.id.familybtn5);
         sign.setOnClickListener(v -> {
             Intent intent = new Intent(this, FamilyPlayActivity.class);
+            startActivity(intent);
+        });
+        sign = findViewById(R.id.thingsbtn7);
+        sign.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ThingsPlayActivity.class);
+            startActivity(intent);
+        });
+        sign = findViewById(R.id.naturebtn7);
+        sign.setOnClickListener(v -> {
+            Intent intent = new Intent(this, NaturePlayActivity.class);
             startActivity(intent);
         });
     }

@@ -42,6 +42,7 @@
         android:padding="16dp"
         android:rowCount="2">
 
+
         <Button
             android:id="@+id/studyStatusButton"
             android:layout_width="80dp"
@@ -52,7 +53,8 @@
             android:background="#FFC1E3"
             android:fontFamily="@font/font"
             android:text="공부현황"
-            android:textSize="24sp" />
+            android:textSize="27sp" />
+
 
         <Button
             android:id="@+id/wordCardButton"
@@ -61,10 +63,10 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
-            android:background="#FFABAB"
+            android:background="#9FD5A1"
             android:fontFamily="@font/font"
             android:text="단어카드"
-            android:textSize="24sp" />
+            android:textSize="27sp" />
 
         <Button
             android:id="@+id/readingPracticeButton"
@@ -73,10 +75,10 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
-            android:background="#FFABAB"
+            android:background="#9ACDE4"
             android:fontFamily="@font/font"
-            android:text="읽기 연습"
-            android:textSize="24sp" />
+            android:text="읽기연습"
+            android:textSize="27sp" />
 
         <Button
             android:id="@+id/gameButton"
@@ -85,10 +87,10 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
-            android:background="#FFABAB"
+            android:background="#F0D5F4"
             android:fontFamily="@font/font"
             android:text="게임"
-            android:textSize="24sp" />
+            android:textSize="27sp" />
 
     </GridLayout>
 </RelativeLayout>

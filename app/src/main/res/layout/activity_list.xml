@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="#FFFFFF"
     android:theme="@style/ThemeOverlay.Edutainment.FullscreenContainer"
     tools:context=".LoginActivity">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,45 +15,83 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="80dp"
+            android:fontFamily="@font/font"
+            android:textSize="19sp"
+            android:textStyle="bold"
             android:text="카테고리" />
 
-        <Button
+        <ImageButton
             android:id="@+id/anibtn1"
-            android:layout_width="237dp"
-            android:layout_height="49dp"
+            android:layout_width="280dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="30dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:text="동물" />
+            android:padding="0dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/animal" />
 
-        <Button
+        <ImageButton
             android:id="@+id/foodbtn2"
-            android:layout_width="237dp"
-            android:layout_height="49dp"
+            android:layout_width="280dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="25dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="00dp"
-            android:text="음식" />
+            android:padding="0dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/food" />
 
-        <Button
+        <ImageButton
             android:id="@+id/ridebtn3"
-            android:layout_width="237dp"
-            android:layout_height="49dp"
+            android:layout_width="280dp"
+            android:layout_height="130dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="00dp"
-            android:text="이동수단" />
+            android:layout_marginTop="25dp"
+            android:padding="0dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ride" />
 
-        <Button
-            android:id="@+id/familybtn4"
-            android:layout_width="237dp"
-            android:layout_height="49dp"
+
+        <ImageButton
+            android:id="@+id/familybtn5"
+            android:layout_width="280dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="25dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="00dp"
-            android:text="가족" />
+            android:padding="0dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/family" />
+
+        <ImageButton
+            android:id="@+id/thingsbtn7"
+            android:layout_width="280dp"
+            android:layout_height="130dp"
+            android:layout_marginTop="25dp"
+            android:layout_gravity="center_horizontal"
+            android:padding="0dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/things" />
+
+        <ImageButton
+            android:id="@+id/naturebtn7"
+            android:layout_width="280dp"
+            android:layout_height="130dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp"
+            android:padding="0dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/nature" />
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp" />
 
 
     </LinearLayout>
-</FrameLayout>
+</ScrollView>

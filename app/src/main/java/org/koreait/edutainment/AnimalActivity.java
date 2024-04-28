@@ -1,7 +1,8 @@
 package org.koreait.edutainment;
 
 import android.content.SharedPreferences;
-import android.net.Uri;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.widget.Button;
@@ -10,111 +11,168 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.database.annotations.Nullable;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Locale;
 
+// AnimalActivity 클래스
 public class AnimalActivity extends AppCompatActivity {
 
-    private HashMap<String, String> words = new HashMap<>();
-    private HashMap<String, String> images = new HashMap<>();
-    private String[] keys;
     private TextToSpeech tts;
-
-    private int currentIndex = 0;
-
-    // Firebase Realtime Database에 연결
-    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-    // Firebase Storage에 연결
-    private FirebaseStorage storage = FirebaseStorage.getInstance();
+    private static final String PREFS_NAME = "Progress";
+    private static final String PREFS_KEY_PROGRESS = "AnimalActivityProgress";
+    DBHelper sqLiteHelper;
+    ImageDBHelper imageDBHelper;
+    TextView textView;
+    TextView progressTextView;
+    Button button;
+    ImageView imageView;
+    private int currentAnimalIndex = 0;
+    private DBHelper dbHelper;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animal);
 
-        // 단어와 이미지 이름을 Firebase Realtime Database에서 불러옴
-        mDatabase.child("words").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // dataSnapshot 객체에는 Firebase Realtime Database의 데이터가 포함되어 있습니다.
-                words = (HashMap<String, String>) dataSnapshot.getValue();
-                keys = words.keySet().toArray(new String[0]);
-                showCard();  // 단어를 불러온 후 카드를 보여줍니다.
-            }
+        button = findViewById(R.id.nextbutton);
+        sqLiteHelper = new DBHelper(this);
+        imageDBHelper = new ImageDBHelper(this);
+        textView = findViewById(R.id.meaningTextView);
+        progressTextView = findViewById(R.id.progressTextView);
+        imageView = findViewById(R.id.imageView);
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // 데이터를 읽는 데 실패했을 때 호출됩니다.
-            }
-        });
-
+        // TextToSpeech 초기화
         tts = new TextToSpeech(this, status -> {
             if (status != TextToSpeech.ERROR) {
                 tts.setLanguage(Locale.KOREAN);
             }
         });
-        // SharedPreferences에서 진행 상황을 불러옵니다.
-        SharedPreferences sharedPreferences = getSharedPreferences("AnimalCardProgress", MODE_PRIVATE);
-        currentIndex = sharedPreferences.getInt("AnimalCardProgress", 0);
 
-        Button button = findViewById(R.id.nextbutton);
-        button.setOnClickListener(v -> showCard());
-    }
+        // SharedPreferences에서 진행 상황 불러오기
+        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        currentAnimalIndex = sharedPreferences.getInt(PREFS_KEY_PROGRESS, 0);
 
-    private void showCard() {
-        if (currentIndex >= keys.length) {
-            tts.speak("끝", TextToSpeech.QUEUE_FLUSH, null, "EndSpeak");
-            return;
+        // res/drawable에 있는 이미지를 로드하고 ImageDBHelper에 저장
+        if (imageDBHelper.getImage("bear") == null) {
+            Bitmap bear = BitmapFactory.decodeResource(getResources(), R.drawable.bear);
+            imageDBHelper.addImage("bear", bear);
+        }
+        if (imageDBHelper.getImage("penguin") == null) {
+            Bitmap penguin = BitmapFactory.decodeResource(getResources(), R.drawable.penguin);
+            imageDBHelper.addImage("penguin", penguin);
+        }
+        if (imageDBHelper.getImage("duck") == null) {
+            Bitmap duck = BitmapFactory.decodeResource(getResources(), R.drawable.duck);
+            imageDBHelper.addImage("duck", duck);
+        }
+        if (imageDBHelper.getImage("butterfly") == null) {
+            Bitmap butterfly = BitmapFactory.decodeResource(getResources(), R.drawable.butterfly);
+            imageDBHelper.addImage("butterfly", butterfly);
+        }
+        if (imageDBHelper.getImage("kangaroo") == null) {
+            Bitmap kangaroo = BitmapFactory.decodeResource(getResources(), R.drawable.kangaroo);
+            imageDBHelper.addImage("kangaroo", kangaroo);
+        }
+        if (imageDBHelper.getImage("bat") == null) {
+            Bitmap bat = BitmapFactory.decodeResource(getResources(), R.drawable.bat);
+            imageDBHelper.addImage("bat", bat);
+        }
+        if (imageDBHelper.getImage("elephant") == null) {
+            Bitmap elephant = BitmapFactory.decodeResource(getResources(), R.drawable.elephant);
+            imageDBHelper.addImage("elephant", elephant);
+        }
+        if (imageDBHelper.getImage("rabbit") == null) {
+            Bitmap rabbit = BitmapFactory.decodeResource(getResources(), R.drawable.rabbit);
+            imageDBHelper.addImage("rabbit", rabbit);
+        }
+        if (imageDBHelper.getImage("panda") == null) {
+            Bitmap panda = BitmapFactory.decodeResource(getResources(), R.drawable.panda);
+            imageDBHelper.addImage("panda", panda);
+        }
+        if (imageDBHelper.getImage("sheep") == null) {
+            Bitmap sheep = BitmapFactory.decodeResource(getResources(), R.drawable.sheep);
+            imageDBHelper.addImage("sheep", sheep);
+        }
+        if (imageDBHelper.getImage("squirrel") == null) {
+            Bitmap squirrel = BitmapFactory.decodeResource(getResources(), R.drawable.squirrel);
+            imageDBHelper.addImage("squirrel", squirrel);
+        }
+        if (imageDBHelper.getImage("tiger") == null) {
+            Bitmap tiger = BitmapFactory.decodeResource(getResources(), R.drawable.tiger);
+            imageDBHelper.addImage("tiger", tiger);
+        }
+        if (imageDBHelper.getImage("otter") == null) {
+            Bitmap otter = BitmapFactory.decodeResource(getResources(), R.drawable.otter);
+            imageDBHelper.addImage("otter", otter);
+        }
+        if (imageDBHelper.getImage("ostrich") == null) {
+            Bitmap ostrich = BitmapFactory.decodeResource(getResources(), R.drawable.ostrich);
+            imageDBHelper.addImage("ostrich", ostrich);
+        }
+        if (imageDBHelper.getImage("lion") == null) {
+            Bitmap lion = BitmapFactory.decodeResource(getResources(), R.drawable.lion);
+            imageDBHelper.addImage("lion", lion);
+        }
+        if (imageDBHelper.getImage("fox") == null) {
+            Bitmap fox = BitmapFactory.decodeResource(getResources(), R.drawable.fox);
+            imageDBHelper.addImage("fox", fox);
         }
 
-        String word = keys[currentIndex];
-        String meaning = words.get(word);
-        String imageName = words.get(word + "_image");
+        dbHelper = new DBHelper(this);
 
-        TextView wordTextView = findViewById(R.id.wordTextView);
-        TextView meaningTextView = findViewById(R.id.meaningTextView);
-        TextView progressTextView = findViewById(R.id.progressTextView);
-        ImageView animalImageView = findViewById(R.id.animalImageView);
+        button.setOnClickListener(view -> {
+            ArrayList<String> animalNames = dbHelper.getAnimalNames();
 
-        wordTextView.setText(word);
-        meaningTextView.setText(meaning);
-        progressTextView.setText((currentIndex + 1) + " / " + keys.length);
+            if (currentAnimalIndex < animalNames.size()) {
+                String nextName = animalNames.get(currentAnimalIndex);
+                textView.setText(nextName);
+                tts.speak(nextName, TextToSpeech.QUEUE_FLUSH, null);
 
-        // Firebase Storage에서 이미지 불러오기
-        storage.getReference().child("animal/" + imageName).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                // 파일 URL 가져오기 성공
-                String url = uri.toString();
-                // Glide 라이브러리를 사용하여 이미지 뷰에 이미지 로드
-                Glide.with(AnimalActivity.this).load(url).into(animalImageView);
+                String englishName = dbHelper.getEnglishName(nextName, "Animals");
+                if (englishName != null) {
+                    Bitmap imageFromDB = imageDBHelper.getImage(englishName);
+                    if (imageFromDB != null) {
+                        imageView.setImageBitmap(imageFromDB);
+                    }
+                }
+
+                currentAnimalIndex++;
+            } else {
+                currentAnimalIndex = 0;
+                String firstName = animalNames.get(currentAnimalIndex);
+                textView.setText(firstName);
+                tts.speak(firstName, TextToSpeech.QUEUE_FLUSH, null);
+
+                String englishName = dbHelper.getEnglishName(firstName, "Animals");
+                if (englishName != null) {
+                    Bitmap imageFromDB = imageDBHelper.getImage(englishName);
+                    if (imageFromDB != null) {
+                        imageView.setImageBitmap(imageFromDB);
+                    }
+                }
             }
-        }).addOnFailureListener(exception -> {
-            // 파일 URL 가져오기 실패
+
+            // 진행 상황 업데이트
+            String progress = (currentAnimalIndex + 1) + "/" + animalNames.size();
+            progressTextView.setText(progress);
+
+            // SharedPreferences에 진행 상황 저장
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt(PREFS_KEY_PROGRESS, currentAnimalIndex);
+            editor.apply();
         });
 
-        tts.speak(meaning, TextToSpeech.QUEUE_FLUSH, null, "WordSpeak");
+    }
 
-        currentIndex = (currentIndex + 1) % keys.length;
-
-        // SharedPreferences에 진행 상황을 저장합니다.
-        SharedPreferences sharedPreferences = getSharedPreferences("AnimalCardProgress", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        // 진행상황을 저장합니다.
-        editor.putInt("AnimalCardProgress", currentIndex);
-        editor.apply(); //
-
-        currentIndex = (currentIndex + 1) % keys.length;
+    @Override
+    protected void onPause() {
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
+        }
+        super.onPause();
     }
 
     @Override
