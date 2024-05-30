@@ -3,3 +3,6 @@
 - 사용 툴 : Android Studio, SQLite, Firebase
 - 사용 언어 : java
 - 주 기능 : 발음 평기 기능
+
+  ### 시스템 구성도
+  <img width="1315" alt="System configuration diagram" src="https://github.com/TAEYEN02/Edutainment/assets/107397675/a2991f89-edf7-42e9-86ca-c56ace9cb4b2">
