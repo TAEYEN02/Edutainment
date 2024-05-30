@@ -12,20 +12,41 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Edutainment">
         <activity
+            android:name=".SentenceGameActivity"
+            android:exported="true" />
+        <activity
+            android:name=".NatureReadActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ThingReadActivity"
+            android:exported="true" />
+        <activity
+            android:name=".FamilyReadActivity"
+            android:exported="true" />
+        <activity
+            android:name=".RideReadActivity"
+            android:exported="true" />
+        <activity
+            android:name=".FoodReadActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ChangeInfoActivity"
+            android:exported="true" />
+        <activity
             android:name=".ReadListActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".NaturePlayActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ThingsPlayActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".NatureActivity"
             android:exported="false" />
         <activity
             android:name=".ThingsActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ReadActivity"
             android:exported="true" />
@@ -68,6 +89,12 @@
         <activity
             android:name=".FoodActivity"
             android:exported="true" />
+        <activity
+            android:name=".Setting"
+            android:exported="true" />
+
+        <service android:name=".MusicService" />
+
         <activity
             android:name=".IntroActivity"
             android:exported="true">

@@ -27,23 +27,22 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-public class ReadActivity extends AppCompatActivity {
+public class FamilyReadActivity extends AppCompatActivity {
 
     private static final double THRESHOLD = 50.0;
     private final ArrayList<Bitmap> images = new ArrayList<>();
     ImageDBHelper imageDBHelper;
-
+    DBHelper dbHelper;
     private String[] keys;
     private SpeechRecognizer mRecognizer;
     private Intent intent;
-    DBHelper dbHelper;
     private int currentIndex = 0;
     private ArrayList<String> words = new ArrayList<>();
     private TextToSpeech tts;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_read);
+        setContentView(R.layout.activity_family_read);
 
         // SharedPreferences 객체를 가져옵니다.
         SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
@@ -54,9 +53,9 @@ public class ReadActivity extends AppCompatActivity {
         dbHelper = new DBHelper(this);
 
         // 데이터베이스에서 단어와 이미지를 불러옵니다.
-        words = dbHelper.getAnimalNames(); // getAnimalNames 메소드를 호출합니다.
+        words = dbHelper.getMemberNames(); // getAnimalNames 메소드를 호출합니다.
         for (String word : words) {
-            String englishName = dbHelper.getEnglishName(word, "Animals"); // "Animals" 테이블에서 영어 이름을 가져옵니다.
+            String englishName = dbHelper.getEnglishName(word, "Members");
             if (englishName != null) {
                 Bitmap image = imageDBHelper.getImage(englishName);
                 if (image != null) {

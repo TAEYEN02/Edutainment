@@ -21,27 +21,27 @@ public class ReadListActivity extends AppCompatActivity {
         });
         sign = findViewById(R.id.foodbtn2);
         sign.setOnClickListener(v -> {
-            Intent intent = new Intent(this, ReadActivity.class);
+            Intent intent = new Intent(this, FoodReadActivity.class);
             startActivity(intent);
         });
         sign = findViewById(R.id.ridebtn3);
         sign.setOnClickListener(v -> {
-            Intent intent = new Intent(this, ReadActivity.class);
+            Intent intent = new Intent(this, RideReadActivity.class);
             startActivity(intent);
         });
         sign = findViewById(R.id.familybtn5);
         sign.setOnClickListener(v -> {
-            Intent intent = new Intent(this, ReadActivity.class);
+            Intent intent = new Intent(this, FamilyReadActivity.class);
             startActivity(intent);
         });
         sign = findViewById(R.id.thingsbtn7);
         sign.setOnClickListener(v -> {
-            Intent intent = new Intent(this, ReadActivity.class);
+            Intent intent = new Intent(this, ThingReadActivity.class);
             startActivity(intent);
         });
         sign = findViewById(R.id.naturebtn7);
         sign.setOnClickListener(v -> {
-            Intent intent = new Intent(this, ReadActivity.class);
+            Intent intent = new Intent(this, NatureReadActivity.class);
             startActivity(intent);
         });
     }

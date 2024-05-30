@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NatureActivity">
+    tools:context=".FamilyReadActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/wordback_shape_nat" />
+        android:background="@drawable/wordback_shape" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -29,7 +29,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
         android:fontFamily="@font/font"
-        android:text="무슨 그림일까요?"
+        android:text="읽어봐요!!"
         android:textSize="20sp" />
 
     <TextView
@@ -40,17 +40,34 @@
         android:layout_marginTop="450dp"
         android:textSize="40sp" />
 
-
-    <Button
-        android:id="@+id/nextbutton"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/meaningTextView"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
-        android:background="@drawable/next_shape_nat"
-        android:fontFamily="@font/font"
-        android:text="다음 카드 보기" />
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/speakbutton"
+            android:layout_width="203dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/next_shape"
+            android:fontFamily="@font/font"
+            android:text="발음하기"
+
+            />
+
+        <Button
+            android:id="@+id/nextbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/next_shape"
+            android:fontFamily="@font/font"
+            android:text="다음 카드 보기" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/progressTextView"
@@ -62,6 +79,5 @@
         android:fontFamily="@font/font"
         android:textColor="#000000"
         android:textSize="16sp" />
-
 
 </RelativeLayout>

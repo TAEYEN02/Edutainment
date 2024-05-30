@@ -1,5 +1,6 @@
 package org.koreait.edutainment;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -129,6 +130,12 @@ public class RideActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putInt(PREFS_KEY_PROGRESS, currentRideIndex);
             editor.apply();
+
+            // 음악 서비스 중지
+            if (MainActivity.SoundCheck) {
+                Intent intent = new Intent(RideActivity.this, MusicService.class);
+                stopService(intent);
+            }
         });
 
     }

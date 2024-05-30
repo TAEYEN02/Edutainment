@@ -52,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
                         User user = dataSnapshot.getValue(User.class);
                         if(password.equals(user.password)) {
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            intent.putExtra("userName", user.name); // 사용자의 이름을 추가
                             startActivity(intent);
                             Toast.makeText(LoginActivity.this, "로그인에 성공했습니다", Toast.LENGTH_LONG).show();
                         } else {

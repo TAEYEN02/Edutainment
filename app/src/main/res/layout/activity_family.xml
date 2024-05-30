@@ -12,7 +12,7 @@
         android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="500dp"
-        android:background="@drawable/wordback_shape" />
+        android:background="@drawable/wordback_shape_fam" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -48,7 +48,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
         android:fontFamily="@font/font"
-        android:background="@drawable/next_shape"
+        android:background="@drawable/next_shape_fam"
         android:text="다음 카드 보기" />
 
     <TextView
