@@ -1,8 +1,8 @@
-# 영유아를 위한 에듀테인먼트 앱 개발 (Edutainment App)
-- 개요 : 2020년도 부터 시작된 코로나로 인하여 아동의 언어 발달 지연 현상이 일어나게 됨. 이에 조금이라도 도움을 주고자 발음 교정과 동시에 간단한 게임을 통한 학습할 수 있는 앱을 생각하게 됨
-- 사용 툴 : Android Studio, SQLite, Firebase
-- 사용 언어 : java
-- 주 기능 : 발음 평기 기능
+# Developing edutainment apps for babies and toddlers (Edutainment App)
+- Overview : Due to the corona pandemic that started in 2020, children's language development has been delayed. In order to help them a little bit, we came up with an app that can correct pronunciation and learn through simple games at the same time.
+- Tools : Android Studio, SQLite, Firebase
+- Language : java
+- Main function: pronunciation rating function
 
-  ### 시스템 구성도
+  ### System Configuration Diagram
   <img width="1315" alt="System configuration diagram" src="https://github.com/TAEYEN02/Edutainment/assets/107397675/a2991f89-edf7-42e9-86ca-c56ace9cb4b2">
