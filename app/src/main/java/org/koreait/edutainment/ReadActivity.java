@@ -198,7 +198,7 @@ public class ReadActivity extends AppCompatActivity {
     private double evaluatePronunciation(String userSpeech, String script) {
         // ETRI API를 호출하여 발음 평가
         String openApiURL = "http://aiopen.etri.re.kr:8000/WiseASR/Pronunciation";
-        String accessKey = "1ad79f9f-3267-4d03-b33c-4d7d7974ebca"; // 발급받은 API Key 입력
+        String accessKey = "..."; // 발급받은 API Key 입력
         String languageCode = "korean"; // 언어 코드
 
         Gson gson = new Gson();
